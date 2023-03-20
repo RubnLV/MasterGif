@@ -1,7 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { catchError, Observable, of, tap } from 'rxjs';
 import { MessageService } from './message.service';
+import { variables } from 'src/variables_entorno/variables';
+import { GifsRandoms } from '../interfaces/gifs.interface';
+
+const UrlGifsRandom = variables.url_randomGifs;
+const Clave = variables.api_key;
+const Limit = 25;
+const Rating = 'g';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +16,6 @@ import { MessageService } from './message.service';
 export class GiphyService {
   // Variables
   static getGif: any;
-  private urlGifs = 'https://api.giphy.com/v1/gifs/trending?api_key=aTijZoCQu85aPcgSmScSJPbIS3HHDXYn&limit=25&rating=pg-13';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -25,7 +31,7 @@ export class GiphyService {
 
   /** Registrar un mensaje del servicio giphyservice con registroLog */
   private log(message: string) {
-    this.messageService.add(`Hero.Service: ${message}`);
+    this.messageService.add(`giphy.Service: ${message}`);
   }
 
   /**
@@ -47,13 +53,13 @@ export class GiphyService {
   }
 
   //llamada asincrona
-  getGifs(): Observable<any> { 
-    const gifs = this.http.get<any[]>(this.urlGifs);
-
+  getGifs(): Observable<GifsRandoms[]> {     
+    const gifs = this.http.get<GifsRandoms[]>(`${UrlGifsRandom}?api_key=${Clave}&limit=${Limit}&rating=${Rating}`);
+    
     this.log('log=> Cargando gifs');
     return gifs.pipe(
       tap(_ => this.log('gifs cargados')),
-      catchError(this.handleError<any[]>('getGifs', []))
+      catchError(this.handleError<GifsRandoms[]>('getGifs', []))
     );
   }
 
