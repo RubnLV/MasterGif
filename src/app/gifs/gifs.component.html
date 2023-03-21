@@ -1,6 +1,9 @@
 <h1>gifs randoms</h1>
-<div>
-  <div *ngFor="let gif of gifs">
-    
+<div class="row row-cols-1 row-cols-md-6 g-4">
+  <div class="col" *ngFor="let gif of gifsRandom">
+    <div class="card">
+      <img [src]="gif.images.downsized_medium.url" [alt]="gif.title" class="card-img-top">
+    </div>
+
   </div>
 </div>

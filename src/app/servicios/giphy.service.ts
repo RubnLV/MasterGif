@@ -7,7 +7,7 @@ import { GifsRandoms } from '../interfaces/gifs.interface';
 
 const UrlGifsRandom = variables.url_randomGifs;
 const Clave = variables.api_key;
-const Limit = 25;
+const Limit = 42;
 const Rating = 'g';
 
 @Injectable({
@@ -53,13 +53,13 @@ export class GiphyService {
   }
 
   //llamada asincrona
-  getGifs(): Observable<GifsRandoms[]> {     
-    const gifs = this.http.get<GifsRandoms[]>(`${UrlGifsRandom}?api_key=${Clave}&limit=${Limit}&rating=${Rating}`);
+  getGifs(): Observable<GifsRandoms> {     
+    const gifs = this.http.get<GifsRandoms>(`${UrlGifsRandom}?api_key=${Clave}&limit=${Limit}&rating=${Rating}`);
     
     this.log('log=> Cargando gifs');
     return gifs.pipe(
       tap(_ => this.log('gifs cargados')),
-      catchError(this.handleError<GifsRandoms[]>('getGifs', []))
+      catchError(this.handleError<GifsRandoms>('getGifs', undefined))
     );
   }
 

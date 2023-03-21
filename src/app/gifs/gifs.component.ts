@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Gifs, GifsRandoms } from '../interfaces/gifs.interface';
 import { GiphyService } from '../servicios/giphy.service';
 import { RegistrologComponent } from '../registrolog/registrolog.component';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-gifs',
@@ -21,8 +22,8 @@ export class GifsComponent {
   getGifs(): void {
     this.giphyService.getGifs()
         .subscribe(res =>
-          //this.gifsRandom = res;
-          console.log(res.data)
+          this.gifsRandom = res.data
+          //console.log(res.data)
         ); //obtenemos los datos de la llamada con subscribe
   }
 
