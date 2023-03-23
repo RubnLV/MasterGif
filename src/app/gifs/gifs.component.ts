@@ -20,7 +20,7 @@ export class GifsComponent {
 
   // Funciones
   getGifs(): void {
-    this.giphyService.getGifs()
+    this.giphyService.getGifsRandoms()
         .subscribe(res =>
           this.gifsRandom = res.data
           //console.log(res.data)

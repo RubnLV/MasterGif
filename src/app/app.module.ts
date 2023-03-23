@@ -7,18 +7,26 @@ import { AppComponent } from './app.component';
 import { RegistrologComponent } from './registrolog/registrolog.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GifsComponent } from './gifs/gifs.component';
+import { GifsanimeComponent } from './gifsanime/gifsanime.component';
+import { GifsseriesComponent } from './gifsseries/gifsseries.component';
+import { NavComponent } from './nav/nav.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistrologComponent,
     DashboardComponent,
-    GifsComponent
+    GifsComponent,
+    GifsanimeComponent,
+    GifsseriesComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

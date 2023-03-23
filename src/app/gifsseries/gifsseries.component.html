@@ -1,0 +1,9 @@
+<h1>gifs Animes</h1>
+<div class="row row-cols-1 row-cols-md-6 g-4">
+  <div class="col" *ngFor="let gif of gifsSeries">
+    <div class="card">
+      <img [src]="gif.images.downsized_medium.url" [alt]="gif.title" class="card-img-top">
+    </div>
+
+  </div>
+</div>

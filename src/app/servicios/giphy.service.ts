@@ -4,11 +4,14 @@ import { catchError, Observable, of, tap } from 'rxjs';
 import { MessageService } from './message.service';
 import { variables } from 'src/variables_entorno/variables';
 import { GifsRandoms } from '../interfaces/gifs.interface';
+import { GifsSearch } from '../interfaces/gifsSearch.interface';
 
 const UrlGifsRandom = variables.url_randomGifs;
+const UrlGifsAnime = variables.url_animeGifs;
 const Clave = variables.api_key;
 const Limit = 42;
 const Rating = 'g';
+const lang = "es"
 
 @Injectable({
   providedIn: 'root'
@@ -52,14 +55,40 @@ export class GiphyService {
     };
   }
 
-  //llamada asincrona
-  getGifs(): Observable<GifsRandoms> {     
+  //llamadas asincronas
+  getGifsRandoms(): Observable<GifsRandoms> {     
     const gifs = this.http.get<GifsRandoms>(`${UrlGifsRandom}?api_key=${Clave}&limit=${Limit}&rating=${Rating}`);
     
     this.log('log=> Cargando gifs');
     return gifs.pipe(
       tap(_ => this.log('gifs cargados')),
       catchError(this.handleError<GifsRandoms>('getGifs', undefined))
+    );
+  }
+
+  getGifsAnime(): Observable<GifsSearch> {    
+    const q = "anime" 
+    const offset = 0    
+
+    const gifs = this.http.get<GifsSearch>(`${UrlGifsAnime}?api_key=${Clave}&q=${q}&limit=${Limit}&offset=${offset}&rating=${Rating}&lang=${lang}`);
+    
+    this.log('log=> Cargando getGifsAnime');
+    return gifs.pipe(
+      tap(_ => this.log('gifs cargados')),
+      catchError(this.handleError<GifsSearch>('getGifs', undefined))
+    );
+  }
+
+  getGifsSeries(): Observable<GifsSearch> {    
+    const q = "series" 
+    const offset = 0    
+
+    const gifs = this.http.get<GifsSearch>(`${UrlGifsAnime}?api_key=${Clave}&q=${q}&limit=${Limit}&offset=${offset}&rating=${Rating}&lang=${lang}`);
+    
+    this.log('log=> Cargando getGifsSeries');
+    return gifs.pipe(
+      tap(_ => this.log('gifs cargados')),
+      catchError(this.handleError<GifsSearch>('getGifs', undefined))
     );
   }
 
