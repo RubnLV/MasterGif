@@ -1,0 +1,9 @@
+.center{
+    justify-content: center
+}
+li>a.color-link{
+    color: #ffffff;
+}
+li>a.color_active{
+    color: #020202;
+}

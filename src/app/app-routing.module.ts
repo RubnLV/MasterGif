@@ -5,7 +5,7 @@ import { GifsanimeComponent } from './gifsanime/gifsanime.component';
 import { GifsseriesComponent } from './gifsseries/gifsseries.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/gifsSeries', pathMatch: 'full' },
+  { path: '', redirectTo: '/gifs', pathMatch: 'full' },
   { path: 'gifs', component: GifsComponent }, 
   { path: 'gifsAnime', component: GifsanimeComponent },
   { path: 'gifsSeries', component: GifsseriesComponent },

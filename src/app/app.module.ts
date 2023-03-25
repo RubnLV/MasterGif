@@ -11,6 +11,7 @@ import { GifsanimeComponent } from './gifsanime/gifsanime.component';
 import { GifsseriesComponent } from './gifsseries/gifsseries.component';
 import { NavComponent } from './nav/nav.component';
 import { FormsModule } from '@angular/forms';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormsModule } from '@angular/forms';
     GifsComponent,
     GifsanimeComponent,
     GifsseriesComponent,
-    NavComponent
+    NavComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

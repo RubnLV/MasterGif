@@ -1,5 +1,19 @@
 <nav>
-    <a routerLink="/gifs">Trending</a>
-    <a routerLink="/gifsAnime">Anime</a>
-    <a routerLink="/gifsSeries">Series</a>
+    <ul class="nav nav-tabs center">
+        <li class="nav-item">
+            <a class="nav-link color-link" aria-current="page" routerLink="/gifs" routerLinkActive="active color_active"
+                [routerLinkActiveOptions]="{exact:
+            true}">Trending</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link color-link" aria-current="page" routerLink="/gifsAnime"
+            routerLinkActive="active color_active" [routerLinkActiveOptions]="{exact:
+                true}">Anime</a>
+            </li>
+        <li class="nav-item">
+            <a class="nav-link color-link" aria-current="page" routerLink="/gifsSeries"
+            routerLinkActive="active color_active" [routerLinkActiveOptions]="{exact:
+                true}">Series</a>
+            </li>
+    </ul>
 </nav>
