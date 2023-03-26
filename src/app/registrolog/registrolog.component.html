@@ -1,9 +1,7 @@
 <div *ngIf="registroLog.messages.length">
-    
-    <h2>Logs</h2>
-    <button type="button" class="clear" (click)="registroLog.clear()">Clear messages</button>
-    <div *ngFor='let message of registroLog.messages'>
+    <p>Registro Log de las llamadas:</p>
+    <button type="button" class="btn btn-danger" (click)="registroLog.clear()">Borrar Registro Log</button>
+    <p class="text-white" *ngFor='let message of registroLog.messages'>
         {{message}}
-    </div>
-
+    </p>
 </div>

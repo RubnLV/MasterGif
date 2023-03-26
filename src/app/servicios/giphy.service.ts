@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { catchError, Observable, of, tap } from 'rxjs';
 import { MessageService } from './message.service';
 import { variables } from 'src/variables_entorno/variables';
-import { GifsRandoms } from '../interfaces/gifs.interface';
+import { Gifs, GifsRandoms } from '../interfaces/gifs.interface';
 import { GifsSearch } from '../interfaces/gifsSearch.interface';
 
 const UrlGifsRandom = variables.url_randomGifs;
@@ -19,6 +19,8 @@ const lang = "es"
 export class GiphyService {
   // Variables
   static getGif: any;
+
+  resultados: Gifs[] = []
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -61,8 +63,8 @@ export class GiphyService {
     
     this.log('log=> Cargando gifs');
     return gifs.pipe(
-      tap(_ => this.log('gifs cargados')),
-      catchError(this.handleError<GifsRandoms>('getGifs', undefined))
+      tap(_ => this.log('getGifsRandoms cargados')),
+      catchError(this.handleError<GifsRandoms>('getGifsRandoms', undefined))
     );
   }
 
@@ -74,8 +76,8 @@ export class GiphyService {
     
     this.log('log=> Cargando getGifsAnime');
     return gifs.pipe(
-      tap(_ => this.log('gifs cargados')),
-      catchError(this.handleError<GifsSearch>('getGifs', undefined))
+      tap(_ => this.log('getGifsAnime cargados')),
+      catchError(this.handleError<GifsSearch>('getGifsAnime', undefined))
     );
   }
 
@@ -87,10 +89,23 @@ export class GiphyService {
     
     this.log('log=> Cargando getGifsSeries');
     return gifs.pipe(
-      tap(_ => this.log('gifs cargados')),
-      catchError(this.handleError<GifsSearch>('getGifs', undefined))
+      tap(_ => this.log('getGifsSeries cargados')),
+      catchError(this.handleError<GifsSearch>('getGifsSeries', undefined))
     );
   }
 
+  getGifsResultados(query:string='') {    
+    const offset = 0    
+
+    this.http.get<GifsSearch>(`${UrlGifsAnime}?api_key=${Clave}&q=${query}&limit=${Limit}&offset=${offset}&rating=${Rating}&lang=${lang}`).subscribe( res=>{
+        this.resultados = res.data;
+    });
+    
+    // this.log('log=> Cargando getGifsResultados');
+    // return gifs.pipe(
+    //   tap(_ => this.log('resultados de busqueda cargados')),
+    //   catchError(this.handleError<GifsSearch>('getGifsResultados', undefined))
+    // );
+  }
 
 }

@@ -22,7 +22,7 @@ export class GifsseriesComponent {
       .subscribe(res =>
         this.gifsSeries = res.data
         //console.log(res.data)
-      ); //obtenemos los datos de la llamada con subscribe
+      ); 
   }
 
   ngOnInit(): void {
